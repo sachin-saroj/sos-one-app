@@ -1,10 +1,3 @@
-## 📸 Screenshots
-
-### 🔴 SOS Screen
-![SOS](./screenshots/sos.png)
-
-### 📞 Contacts
-![Contacts](./screenshots/contacts.png)
 <p align="center">
   <img src="renderer/assets/icon.png" alt="SOS One Logo" width="120" />
 </p>
@@ -38,7 +31,13 @@ It is designed for speed and clarity:
 - quick-dial access to helpline numbers
 
 This repository is intentionally maintained as a **desktop-only software project**.
+## 📸 Screenshots
 
+### 🔴 SOS Screen
+![SOS](./screenshots/sos.png)
+
+### 📞 Contacts
+![Contacts](./screenshots/contacts.png)
 ---
 
 ## Project Goal
