@@ -31,8 +31,8 @@ It is designed for speed and clarity:
 - quick-dial access to helpline numbers
 
 This repository is intentionally maintained as a **desktop-only software project**.
-![SOS](./screenshots/sos.png)
-![Contacts](./screenshots/contacts.png)
+![SOS](./sos.png)
+![Contacts](./contacts.png)
 ---
 
 ## Project Goal
