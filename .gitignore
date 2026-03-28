@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Build output
+dist/
+out/
+build/
+
+# Environment
+.env
+.env.local
+
+# Desktop-only cleanup
+backend/
+*.db
+*.sqlite
+*.sqlite3

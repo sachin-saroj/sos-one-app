@@ -1,0 +1,16 @@
+{
+  "name": "sos-one-desktop",
+  "version": "1.0.0",
+  "description": "SOS One — Emergency SOS & Helpline Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "keywords": ["sos", "emergency", "helpline", "safety", "electron"],
+  "author": "Sachin",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0"
+  }
+}

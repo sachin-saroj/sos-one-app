@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self';">
+  <title>SOS One — Emergency SOS & Helpline</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- CUSTOM TITLE BAR (frameless window)            -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <header class="titlebar" id="titlebar">
+    <div class="titlebar__brand">
+      <!-- Inline SVG Logo -->
+      <svg class="titlebar__logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="22" r="22" stroke="#FF3B30" stroke-width="1.5" stroke-opacity="0.15" fill="none"/>
+        <circle cx="24" cy="22" r="18" stroke="#FF3B30" stroke-width="1.5" stroke-opacity="0.25" fill="none"/>
+        <circle cx="24" cy="22" r="14" stroke="#FF3B30" stroke-width="2" stroke-opacity="0.4" fill="none"/>
+        <circle cx="24" cy="22" r="10" fill="url(#logoGrad)"/>
+        <text x="24" y="26" text-anchor="middle" fill="white" font-family="Inter, sans-serif" font-size="8" font-weight="900">SOS</text>
+        <rect x="8" y="36" width="10" height="10" rx="2.5" fill="#FF3B30" fill-opacity="0.9"/>
+        <text x="13" y="43.5" text-anchor="middle" fill="white" font-size="7">🚓</text>
+        <rect x="20" y="36" width="10" height="10" rx="2.5" fill="#FF3B30" fill-opacity="0.9"/>
+        <text x="25" y="43.5" text-anchor="middle" fill="white" font-size="7">🚑</text>
+        <rect x="32" y="36" width="10" height="10" rx="2.5" fill="#FF3B30" fill-opacity="0.9"/>
+        <text x="37" y="43.5" text-anchor="middle" fill="white" font-size="7">🛡</text>
+        <defs>
+          <radialGradient id="logoGrad" cx="0.35" cy="0.35" r="0.7">
+            <stop offset="0%" stop-color="#FF6B6B"/>
+            <stop offset="100%" stop-color="#CC2D25"/>
+          </radialGradient>
+        </defs>
+      </svg>
+      <h1 class="titlebar__title">SOS <span>One</span></h1>
+    </div>
+    <div class="titlebar__controls">
+      <span class="badge badge--online" id="network-badge">
+        <span class="status-dot"></span>
+        <span class="status-text">Ready</span>
+      </span>
+      <button class="titlebar__btn titlebar__btn--minimize" id="btn-minimize" aria-label="Minimize">
+        <svg viewBox="0 0 12 12"><rect y="5" width="12" height="2" rx="1" fill="currentColor"/></svg>
+      </button>
+      <button class="titlebar__btn titlebar__btn--close" id="btn-close" aria-label="Close">
+        <svg viewBox="0 0 12 12">
+          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- APP CONTENT                                    -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="app-shell">
+
+    <main class="app-main">
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- SCREEN: SOS (Home)                           -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="screen active sos-screen" id="screen-sos">
+
+        <!-- SOS Button Area -->
+        <div class="sos-container">
+          <div class="sos-pulse-ring"></div>
+          <div class="sos-pulse-ring"></div>
+          <div class="sos-pulse-ring"></div>
+          <button class="sos-button" id="sos-button" aria-label="Send SOS Emergency Alert">
+            SOS
+          </button>
+        </div>
+
+        <!-- Instruction text -->
+        <div class="sos-instruction">
+          <span class="sos-instruction__primary">Tap to Send Emergency Alert</span>
+          <span class="sos-instruction__secondary">3-second countdown • Can be cancelled</span>
+        </div>
+
+        <!-- No contacts warning -->
+        <div class="no-contacts-warning" id="no-contacts-warning" style="display: none;">
+          <div class="no-contacts-card" id="go-to-contacts-btn">
+            <div class="no-contacts-card__icon">⚠️</div>
+            <div class="no-contacts-card__text">
+              <div class="no-contacts-card__title">No Emergency Contacts</div>
+              <div class="no-contacts-card__desc">Add contacts to enable SOS alerts</div>
+            </div>
+            <div class="no-contacts-card__arrow">→</div>
+          </div>
+        </div>
+
+        <!-- Emergency Helpline Cards -->
+        <div class="helpline-section">
+          <div class="helpline-section__title">Emergency Helplines</div>
+          <div class="helpline-grid">
+
+            <!-- Police -->
+            <a href="tel:100" class="helpline-card helpline-card--police" id="helpline-police">
+              <div class="helpline-card__icon">🚓</div>
+              <div class="helpline-card__info">
+                <div class="helpline-card__name">Police</div>
+                <div class="helpline-card__number">100</div>
+              </div>
+              <div class="helpline-card__dial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Ambulance -->
+            <a href="tel:102" class="helpline-card helpline-card--ambulance" id="helpline-ambulance">
+              <div class="helpline-card__icon">🚑</div>
+              <div class="helpline-card__info">
+                <div class="helpline-card__name">Ambulance</div>
+                <div class="helpline-card__number">102</div>
+              </div>
+              <div class="helpline-card__dial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Women Safety -->
+            <a href="tel:1091" class="helpline-card helpline-card--women" id="helpline-women">
+              <div class="helpline-card__icon">🛡️</div>
+              <div class="helpline-card__info">
+                <div class="helpline-card__name">Women Safety</div>
+                <div class="helpline-card__number">1091</div>
+              </div>
+              <div class="helpline-card__dial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Fire -->
+            <a href="tel:101" class="helpline-card helpline-card--fire" id="helpline-fire">
+              <div class="helpline-card__icon">🔥</div>
+              <div class="helpline-card__info">
+                <div class="helpline-card__name">Fire Brigade</div>
+                <div class="helpline-card__number">101</div>
+              </div>
+              <div class="helpline-card__dial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </a>
+
+            <!-- Universal Emergency -->
+            <a href="tel:112" class="helpline-card helpline-card--universal" id="helpline-112">
+              <div class="helpline-card__icon">📞</div>
+              <div class="helpline-card__info">
+                <div class="helpline-card__name">Universal Emergency</div>
+                <div class="helpline-card__number">112</div>
+              </div>
+              <div class="helpline-card__dial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ──────────────────────────────────────────── -->
+      <!-- SCREEN: Emergency Contacts                   -->
+      <!-- ──────────────────────────────────────────── -->
+      <section class="screen contacts-screen" id="screen-contacts">
+        <div class="screen-header">
+          <h2 class="screen-header__title">Emergency Contacts</h2>
+          <span class="contact-count-badge" id="contact-count-badge">0/5</span>
+        </div>
+
+        <!-- Contact List -->
+        <div class="contact-list" id="contact-list">
+          <div class="empty-state">
+            <div class="empty-state__icon">👥</div>
+            <div class="empty-state__title">No Emergency Contacts</div>
+            <div class="empty-state__desc">Add up to 5 trusted contacts who will receive your SOS alerts</div>
+          </div>
+        </div>
+
+        <!-- Add Contact Button -->
+        <button class="add-contact-btn" id="add-contact-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Add Emergency Contact
+        </button>
+      </section>
+
+    </main>
+
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- BOTTOM NAVIGATION                              -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <nav class="bottom-nav">
+      <button class="bottom-nav__item active" data-screen="sos" aria-label="SOS Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span class="bottom-nav__label">SOS</span>
+      </button>
+      <button class="bottom-nav__item" data-screen="contacts" aria-label="Contacts">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <span class="bottom-nav__label">Contacts</span>
+      </button>
+    </nav>
+
+  </div><!-- /.app-shell -->
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- OVERLAYS                                       -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <!-- Countdown Overlay -->
+  <div class="countdown-overlay" id="countdown-overlay">
+    <svg class="countdown-ring" viewBox="0 0 248 248">
+      <circle class="countdown-ring__bg" cx="124" cy="124" r="120"/>
+      <circle class="countdown-ring__progress" id="countdown-ring-progress" cx="124" cy="124" r="120"/>
+    </svg>
+    <div class="countdown-number" id="countdown-number">3</div>
+    <div class="countdown-text">Sending SOS Alert...</div>
+    <button class="countdown-cancel" id="countdown-cancel">CANCEL</button>
+  </div>
+
+  <!-- Confirmation Overlay -->
+  <div class="confirmation-overlay" id="confirmation-overlay">
+    <div class="confirm-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h2 class="confirm-title">Alert Sent Successfully!</h2>
+    <p class="confirm-subtitle">Your emergency contacts have been notified</p>
+
+    <div class="confirm-details">
+      <div class="confirm-detail-card">
+        <div class="confirm-detail-card__icon confirm-detail-card__icon--contacts">👥</div>
+        <div class="confirm-detail-card__content">
+          <div class="confirm-detail-card__label">Contacts Notified</div>
+          <div class="confirm-detail-card__value" id="confirm-contacts-list">—</div>
+        </div>
+      </div>
+      <div class="confirm-detail-card">
+        <div class="confirm-detail-card__icon confirm-detail-card__icon--location">📍</div>
+        <div class="confirm-detail-card__content">
+          <div class="confirm-detail-card__label">Your Location</div>
+          <div class="confirm-detail-card__value">
+            <span id="confirm-location-text"></span><br>
+            <a href="#" id="confirm-location-link" target="_blank" rel="noopener"></a>
+          </div>
+        </div>
+      </div>
+      <div class="confirm-detail-card">
+        <div class="confirm-detail-card__icon" style="background: rgba(255,149,0,0.2)">⏰</div>
+        <div class="confirm-detail-card__content">
+          <div class="confirm-detail-card__label">Time</div>
+          <div class="confirm-detail-card__value" id="confirm-time">—</div>
+        </div>
+      </div>
+      <div class="confirm-detail-card">
+        <div class="confirm-detail-card__icon" style="background: rgba(0,122,255,0.2)">💬</div>
+        <div class="confirm-detail-card__content">
+          <div class="confirm-detail-card__label">Message Sent</div>
+          <div class="confirm-detail-card__value confirm-detail-card__value--message" id="confirm-message">—</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="confirm-dismiss" id="confirm-dismiss">Back to Safety</button>
+  </div>
+
+  <!-- Contact Add/Edit Modal -->
+  <div class="overlay" id="contact-modal">
+    <div class="overlay__content">
+      <div class="contact-form-modal" id="contact-form">
+        <h3 class="contact-form-modal__title" id="contact-modal-title">Add Emergency Contact</h3>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-name-input">Name</label>
+          <input class="form-input" id="contact-name-input" type="text" placeholder="e.g. Mom" autocomplete="off" maxlength="50">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="contact-phone-input">Phone Number</label>
+          <input class="form-input" id="contact-phone-input" type="tel" placeholder="e.g. 9876543210" autocomplete="off" maxlength="15">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Relationship</label>
+          <div class="relationship-selector">
+            <button class="relationship-chip active" data-value="Family">Family</button>
+            <button class="relationship-chip" data-value="Friend">Friend</button>
+            <button class="relationship-chip" data-value="Other">Other</button>
+          </div>
+        </div>
+
+        <div class="contact-form-actions">
+          <button class="btn btn--secondary btn--full" id="cancel-contact-btn">Cancel</button>
+          <button class="btn btn--primary btn--full" id="save-contact-btn">Save Contact</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- SCRIPTS                                        -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>
