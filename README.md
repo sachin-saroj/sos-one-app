@@ -1,3 +1,10 @@
+## 📸 Screenshots
+
+### 🔴 SOS Screen
+![SOS](./screenshots/sos.png)
+
+### 📞 Contacts
+![Contacts](./screenshots/contacts.png)
 <p align="center">
   <img src="renderer/assets/icon.png" alt="SOS One Logo" width="120" />
 </p>
